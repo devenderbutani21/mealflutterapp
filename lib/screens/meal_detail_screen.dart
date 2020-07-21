@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../dummy_data.dart';
@@ -11,10 +10,8 @@ class MealDetailScreen extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Text(
         text,
-        style: Theme.of(context)
-            .textTheme
-            // ignore: deprecated_member_use
-            .title,
+        // ignore: deprecated_member_use
+        style: Theme.of(context).textTheme.title,
       ),
     );
   }
@@ -57,14 +54,14 @@ class MealDetailScreen extends StatelessWidget {
             buildContainer(
               ListView.builder(
                 itemBuilder: (ctx, index) => Card(
-                  color: Theme.of(context).accentColor,
-                  child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 5,
-                        horizontal: 10,
-                      ),
-                      child: Text(selectedMeal.ingredients[index])),
-                ),
+                      color: Theme.of(context).accentColor,
+                      child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 5,
+                            horizontal: 10,
+                          ),
+                          child: Text(selectedMeal.ingredients[index])),
+                    ),
                 itemCount: selectedMeal.ingredients.length,
               ),
             ),
@@ -72,21 +69,21 @@ class MealDetailScreen extends StatelessWidget {
             buildContainer(
               ListView.builder(
                 itemBuilder: (ctx, index) => Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: CircleAvatar(
-                        child: Text('# ${index + 1}'),
-                      ),
-                      title: Text(
-                        selectedMeal.steps[index],
-                      ),
+                      children: [
+                        ListTile(
+                          leading: CircleAvatar(
+                            child: Text('# ${(index + 1)}'),
+                          ),
+                          title: Text(
+                            selectedMeal.steps[index],
+                          ),
+                        ),
+                        Divider()
+                      ],
                     ),
-                    Divider()
-                  ],
-                ),
                 itemCount: selectedMeal.steps.length,
               ),
-            )
+            ),
           ],
         ),
       ),

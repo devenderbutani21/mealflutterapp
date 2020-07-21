@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import './screens/meal_detail_screen.dart';
 
+import './screens/tabs_screen.dart';
+import './screens/meal_detail_screen.dart';
 import './screens/category_meals_screen.dart';
+import './screens/filters_screen.dart';
 import './screens/categories_screen.dart';
 
 void main() => runApp(MyApp());
@@ -36,16 +38,21 @@ class MyApp extends StatelessWidget {
       // home: CategoriesScreen(),
       initialRoute: '/', // default is '/'
       routes: {
-        '/': (ctx) => CategoriesScreen(),
+        '/': (ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
       onGenerateRoute: (settings) {
-          print(settings.arguments);
-          return MaterialPageRoute(builder: (ctx) => CategoriesScreen(),);
+        print(settings.arguments);
+         if (settings.name == '/meal-detail') {
+           return MaterialPageRoute(builder: (ctx) => CategoriesScreen(),);
+         } else if (settings.name == '/something-else') {
+           return MaterialPageRoute(builder: (ctx) => CategoriesScreen(),);
+         }
+         return MaterialPageRoute(builder: (ctx) => CategoriesScreen(),);
       }, // if route is not registered in the table then this is used
       onUnknownRoute: (settings) {
-        print(settings.arguments);
         return MaterialPageRoute(builder: (ctx) => CategoriesScreen(),);
       }, // fall back page such as 404 error in website
     );
