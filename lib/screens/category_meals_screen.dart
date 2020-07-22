@@ -8,7 +8,7 @@ class CategoryMealsScreen extends StatefulWidget {
 
   final List<Meal> availableMeals;
 
-  const CategoryMealsScreen(this.availableMeals);
+  CategoryMealsScreen(this.availableMeals);
 
   @override
   _CategoryMealsScreenState createState() => _CategoryMealsScreenState();
@@ -21,7 +21,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
   @override
   void initState() {
-    //...
+    // ...
     super.initState();
   }
 
@@ -35,8 +35,8 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
       displayedMeals = widget.availableMeals.where((meal) {
         return meal.categories.contains(categoryId);
       }).toList();
+      _loadedInitData = true;
     }
-    _loadedInitData = true;
     super.didChangeDependencies();
   }
 
@@ -61,7 +61,6 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
             duration: displayedMeals[index].duration,
             affordability: displayedMeals[index].affordability,
             complexity: displayedMeals[index].complexity,
-            removeItem: _removeMeal,
           );
         },
         itemCount: displayedMeals.length,
